@@ -1,0 +1,717 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Retirement Runway</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=DM+Sans:wght@400;500;600&display=swap">
+<style>
+:root {
+  --page: #ece5d9;
+  --card: #fbf8f2;
+  --ink: #2a2420;
+  --muted: #6f655b;
+  --line: #ddd3c4;
+  --accent: #c2492b;
+  --need: #96701f;
+  --good: #2c7a4b;
+  --bad: #b23a2e;
+  --tint: #f3ebdf;
+  --thumb-ring: #fbf8f2;
+  --on-accent: #ffffff;
+  --display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+  --body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --page: #171310;
+    --card: #221c18;
+    --ink: #f1e9de;
+    --muted: #a99d90;
+    --line: #3b322b;
+    --accent: #e07652;
+    --need: #d9ab4e;
+    --good: #6cc38b;
+    --bad: #ee7b6d;
+    --tint: #2c241e;
+    --thumb-ring: #221c18;
+    --on-accent: #1d1713;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --page: #171310;
+  --card: #221c18;
+  --ink: #f1e9de;
+  --muted: #a99d90;
+  --line: #3b322b;
+  --accent: #e07652;
+  --need: #d9ab4e;
+  --good: #6cc38b;
+  --bad: #ee7b6d;
+  --tint: #2c241e;
+  --thumb-ring: #221c18;
+  --on-accent: #1d1713;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--page);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.45;
+  padding-block: 28px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.card {
+  max-width: 440px;
+  margin: 0 auto;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 26px 24px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+.rows { display: flex; flex-direction: column; gap: 24px; }
+.row { display: flex; flex-direction: column; gap: 12px; }
+.row-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.row-head label, .row-head .lbl { font-size: 15px; font-weight: 500; min-width: 0; }
+.row-head label small, .row-head .lbl small { display: block; font-size: 12.5px; font-weight: 400; color: var(--muted); }
+.row-head label small:empty { display: none; }
+.val {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 23px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 28px;
+  background: transparent;
+  margin: 0;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-runnable-track { height: 3px; border-radius: 3px; background: var(--line); }
+input[type=range]::-moz-range-track { height: 3px; border-radius: 3px; background: var(--line); }
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--thumb-ring);
+  box-shadow: 0 0 0 1px var(--accent), 0 2px 6px rgba(0,0,0,.25);
+  margin-top: -9.5px;
+}
+input[type=range]::-moz-range-thumb {
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--thumb-ring);
+  box-shadow: 0 0 0 1px var(--accent), 0 2px 6px rgba(0,0,0,.25);
+}
+input[type=range]:focus-visible { outline: none; }
+input[type=range]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 1px var(--accent), 0 0 0 5px color-mix(in srgb, var(--accent) 35%, transparent); }
+input[type=range]:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 1px var(--accent), 0 0 0 5px color-mix(in srgb, var(--accent) 35%, transparent); }
+
+.pension {
+  border-top: 1px solid var(--line);
+  padding-top: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.pension-title { font-family: var(--display); font-weight: 600; font-size: 19px; }
+.pension-title small { display: block; font-family: var(--body); font-weight: 400; font-size: 12.5px; color: var(--muted); }
+.pension-head { display: flex; flex-direction: column; gap: 12px; }
+.person { display: flex; flex-direction: column; gap: 16px; }
+.person + .person { border-top: 1px dashed var(--line); padding-top: 22px; }
+.person-name { font-size: 11px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); }
+.pension-body { display: flex; flex-direction: column; gap: 24px; }
+
+.seg { display: inline-flex; background: var(--tint); border: 1px solid var(--line); border-radius: 10px; padding: 3px; gap: 2px; flex: none; position: relative; }
+.seg.wide { display: flex; }
+.seg input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.seg label {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 6px 16px;
+  border-radius: 7px;
+  cursor: pointer;
+  color: var(--muted);
+  text-align: center;
+}
+.seg.wide label { flex: 1; }
+.seg input:checked + label { background: var(--accent); color: var(--on-accent); }
+.seg input:focus-visible + label { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.facts {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--tint);
+  border-radius: 14px;
+  padding: 4px 16px;
+}
+.fact { display: flex; flex-direction: column; gap: 2px; padding: 11px 0; }
+.fact + .fact { border-top: 1px solid var(--line); }
+.fact-top { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; }
+.fact dt { font-size: 14px; font-weight: 500; min-width: 0; }
+.fact dd { margin: 0; font-family: var(--display); font-weight: 600; font-size: 17px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.fact dd.good { color: var(--good); }
+.fact .note { font-size: 12.5px; color: var(--muted); text-wrap: pretty; }
+.warn { margin: 0; font-size: 13px; color: var(--bad); }
+
+.results {
+  border-top: 1px solid var(--line);
+  padding-top: 22px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  text-align: center;
+}
+.res { display: flex; flex-direction: column; gap: 8px; align-items: center; min-width: 0; }
+.res .k {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.3;
+  text-wrap: balance;
+}
+.res .n {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+.res .sub { font-size: 12px; color: var(--muted); margin-top: -3px; }
+.res.need .n { color: var(--need); }
+.res.gap .n { color: var(--good); }
+.res.gap.behind .n { color: var(--bad); }
+.res.gap .n small { display: block; font-size: 18px; font-weight: 600; }
+
+.callout {
+  background: var(--tint);
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.callout svg { flex: none; margin-top: 2px; color: var(--accent); }
+.callout p { margin: 0; min-width: 0; }
+.callout p + p { margin-top: 8px; }
+.callout .lead { font-weight: 500; text-wrap: pretty; }
+.callout .lead b { font-weight: 600; }
+.callout .more { color: var(--muted); font-size: 14px; }
+.callout .more b { color: var(--ink); font-weight: 600; }
+
+details summary {
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--muted);
+  list-style: none;
+  width: fit-content;
+}
+details summary::-webkit-details-marker { display: none; }
+details summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+.how { display: flex; flex-direction: column; gap: 12px; padding-top: 14px; font-size: 14px; color: var(--muted); }
+.how p { margin: 0; }
+.how b { color: var(--ink); font-weight: 600; }
+.how a { color: var(--ink); text-underline-offset: 3px; }
+.worked {
+  font-family: var(--display);
+  font-size: 14.5px;
+  color: var(--ink);
+  background: var(--tint);
+  border-radius: 10px;
+  padding: 10px 12px;
+  overflow-wrap: anywhere;
+}
+.assump { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.assump label { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--muted); }
+.assump input {
+  width: 100%;
+  font: inherit;
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 7px 9px;
+  font-variant-numeric: tabular-nums;
+}
+.assump input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.fine { font-size: 12.5px; }
+
+@media (max-width: 380px) {
+  .card { padding: 22px 18px 20px; }
+  .res .n { font-size: 22px; }
+  .res.gap .n small { font-size: 16px; }
+}
+</style>
+
+<main class="card" id="card">
+  <div class="rows">
+    <div class="row">
+      <div class="row-head"><label for="age">Your age today</label><output class="val" id="v-age" for="age">33</output></div>
+      <input type="range" id="age" min="18" max="70" step="1" value="33">
+    </div>
+    <div class="row">
+      <div class="row-head"><label for="life">Monthly lifestyle in retirement <small id="life-sub">(today's dollars)</small></label><output class="val" id="v-life" for="life">$4,000</output></div>
+      <input type="range" id="life" min="1000" max="30000" step="100" value="4000">
+    </div>
+    <div class="row">
+      <div class="row-head"><label for="pv">Current investment portfolio <small id="pv-sub">(TFSA, RRSP, stocks — total)</small></label><output class="val" id="v-pv" for="pv">$0</output></div>
+      <input type="range" id="pv" min="0" max="2000000" step="5000" value="0">
+    </div>
+    <div class="row">
+      <div class="row-head"><label for="pmt">You invest per month <small id="pmt-sub">(in the market, not savings)</small></label><output class="val" id="v-pmt" for="pmt">$2,400</output></div>
+      <input type="range" id="pmt" min="0" max="15000" step="100" value="2400">
+    </div>
+    <div class="row">
+      <div class="row-head"><label for="ret">You want to retire at <small id="ret-sub"></small></label><output class="val" id="v-ret" for="ret">65</output></div>
+      <input type="range" id="ret" min="45" max="75" step="1" value="65">
+    </div>
+  </div>
+
+  <section class="pension" aria-labelledby="pl-title">
+    <div class="pension-head">
+      <div class="pension-title" id="pl-title">Workplace pensions<small>Ontario defined benefit plans</small></div>
+      <div class="seg wide" role="radiogroup" aria-label="Who is planning">
+        <input type="radio" name="who" id="who-solo" value="solo" checked><label for="who-solo">Just me</label>
+        <input type="radio" name="who" id="who-family" value="family"><label for="who-family">Me and a partner</label>
+      </div>
+    </div>
+
+    <div class="person" id="me-block">
+      <div class="person-name" id="me-name" hidden>You</div>
+      <div class="seg wide" role="radiogroup" aria-label="Your pension plan">
+        <input type="radio" name="me-plan" id="me-plan-none" value="none"><label for="me-plan-none">None</label>
+        <input type="radio" name="me-plan" id="me-plan-omers" value="omers" checked><label for="me-plan-omers">OMERS</label>
+        <input type="radio" name="me-plan" id="me-plan-hoopp" value="hoopp"><label for="me-plan-hoopp">HOOPP</label>
+      </div>
+      <div class="pension-body" id="me-body">
+        <div class="row">
+          <div class="row-head"><label for="me-sal">Your salary <small>(today's dollars, a year)</small></label><output class="val" id="me-v-sal" for="me-sal">$90,000</output></div>
+          <input type="range" id="me-sal" min="30000" max="250000" step="1000" value="90000">
+        </div>
+        <div class="row">
+          <div class="row-head"><label for="me-svc">Pension service so far <small>(years already credited)</small></label><output class="val" id="me-v-svc" for="me-svc">0</output></div>
+          <input type="range" id="me-svc" min="0" max="35" step="1" value="0">
+        </div>
+        <div class="row-head" id="me-nra-row">
+          <span class="lbl" id="me-nra-lbl">Normal retirement age <small>(on your OMERS statement)</small></span>
+          <div class="seg" role="radiogroup" aria-labelledby="me-nra-lbl">
+            <input type="radio" name="me-nra" id="me-nra65" value="65" checked><label for="me-nra65">65</label>
+            <input type="radio" name="me-nra" id="me-nra60" value="60"><label for="me-nra60">60</label>
+          </div>
+        </div>
+        <dl class="facts" aria-live="polite">
+          <div class="fact">
+            <div class="fact-top"><dt>You contribute</dt><dd id="me-f-contrib"></dd></div>
+            <div class="note" id="me-f-contrib-note"></div>
+          </div>
+          <div class="fact">
+            <div class="fact-top"><dt id="me-f-life-dt"></dt><dd class="good" id="me-f-life"></dd></div>
+            <div class="note" id="me-f-life-note"></div>
+          </div>
+          <div class="fact" id="me-f-bridge-row" hidden>
+            <div class="fact-top"><dt id="me-f-bridge-dt"></dt><dd class="good" id="me-f-bridge"></dd></div>
+            <div class="note">The bridge benefit tops up the pension until age 65.</div>
+          </div>
+        </dl>
+        <p class="warn" id="me-warn" hidden></p>
+      </div>
+    </div>
+
+    <div class="person" id="pt-block" hidden>
+      <div class="person-name">Your partner</div>
+      <div class="row">
+        <div class="row-head"><label for="pt-age">Partner's age today <small id="pt-age-sub"></small></label><output class="val" id="pt-v-age" for="pt-age">33</output></div>
+        <input type="range" id="pt-age" min="18" max="70" step="1" value="33">
+      </div>
+      <div class="seg wide" role="radiogroup" aria-label="Partner's pension plan">
+        <input type="radio" name="pt-plan" id="pt-plan-none" value="none"><label for="pt-plan-none">None</label>
+        <input type="radio" name="pt-plan" id="pt-plan-omers" value="omers"><label for="pt-plan-omers">OMERS</label>
+        <input type="radio" name="pt-plan" id="pt-plan-hoopp" value="hoopp" checked><label for="pt-plan-hoopp">HOOPP</label>
+      </div>
+      <div class="pension-body" id="pt-body">
+        <div class="row">
+          <div class="row-head"><label for="pt-sal">Partner's salary <small>(today's dollars, a year)</small></label><output class="val" id="pt-v-sal" for="pt-sal">$80,000</output></div>
+          <input type="range" id="pt-sal" min="30000" max="250000" step="1000" value="80000">
+        </div>
+        <div class="row">
+          <div class="row-head"><label for="pt-svc">Pension service so far <small>(years already credited)</small></label><output class="val" id="pt-v-svc" for="pt-svc">0</output></div>
+          <input type="range" id="pt-svc" min="0" max="35" step="1" value="0">
+        </div>
+        <div class="row-head" id="pt-nra-row">
+          <span class="lbl" id="pt-nra-lbl">Normal retirement age <small>(on their OMERS statement)</small></span>
+          <div class="seg" role="radiogroup" aria-labelledby="pt-nra-lbl">
+            <input type="radio" name="pt-nra" id="pt-nra65" value="65" checked><label for="pt-nra65">65</label>
+            <input type="radio" name="pt-nra" id="pt-nra60" value="60"><label for="pt-nra60">60</label>
+          </div>
+        </div>
+        <dl class="facts" aria-live="polite">
+          <div class="fact">
+            <div class="fact-top"><dt>Your partner contributes</dt><dd id="pt-f-contrib"></dd></div>
+            <div class="note" id="pt-f-contrib-note"></div>
+          </div>
+          <div class="fact">
+            <div class="fact-top"><dt id="pt-f-life-dt"></dt><dd class="good" id="pt-f-life"></dd></div>
+            <div class="note" id="pt-f-life-note"></div>
+          </div>
+          <div class="fact" id="pt-f-bridge-row" hidden>
+            <div class="fact-top"><dt id="pt-f-bridge-dt"></dt><dd class="good" id="pt-f-bridge"></dd></div>
+            <div class="note">The bridge benefit tops up the pension until age 65.</div>
+          </div>
+        </dl>
+        <p class="warn" id="pt-warn" hidden></p>
+      </div>
+    </div>
+
+    <dl class="facts" id="hh-facts" aria-live="polite" hidden>
+      <div class="fact" id="hh-total-row" hidden>
+        <div class="fact-top"><dt>Pensions together</dt><dd class="good" id="hh-total"></dd></div>
+        <div class="note" id="hh-total-note"></div>
+      </div>
+      <div class="fact">
+        <div class="fact-top"><dt>Portfolio you need without a pension</dt><dd id="f-without"></dd></div>
+        <div class="note" id="f-saves"></div>
+      </div>
+      <div class="fact" id="hh-other-row">
+        <div class="fact-top"><dt id="f-other-dt"></dt><dd id="f-other"></dd></div>
+        <div class="note" id="f-other-note"></div>
+      </div>
+    </dl>
+  </section>
+
+  <div class="results" aria-live="polite">
+    <div class="res"><div class="k">You're on track for</div><div class="n" id="r-proj">$4.3M</div></div>
+    <div class="res need"><div class="k">You actually need</div><div class="n" id="r-need">$4.1M</div><div class="sub" id="r-need-sub"></div></div>
+    <div class="res gap" id="gapbox"><div class="k">Your gap</div><div class="n" id="r-gap">$137K<small>ahead</small></div></div>
+  </div>
+
+  <div class="callout" aria-live="polite">
+    <svg id="icon" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 9.5l3.5 3.5 7.5-8"/></svg>
+    <div>
+      <p class="lead" id="lead"></p>
+      <p class="more" id="more"></p>
+    </div>
+  </div>
+
+  <details>
+    <summary>How is this calculated?</summary>
+    <div class="how">
+      <p><b>On track for</b> is what your portfolio grows to by your retirement age: your current balance plus your monthly contributions, compounded monthly at the expected return.</p>
+      <p><b>You actually need</b> is the portfolio that can pay for the part of your lifestyle that other income does not cover. That amount is raised by inflation up to the year you retire, then divided by the withdrawal rate you can safely take each year.</p>
+      <p class="worked" id="worked"></p>
+      <div class="assump">
+        <label for="a-ret">Return, % a year<input id="a-ret" type="number" inputmode="decimal" min="0" max="15" step="0.5" value="8"></label>
+        <label for="a-infl">Inflation, % a year<input id="a-infl" type="number" inputmode="decimal" min="0" max="10" step="0.5" value="3"></label>
+        <label for="a-wr">Withdrawal rate, %<input id="a-wr" type="number" inputmode="decimal" min="1" max="10" step="0.5" value="3"></label>
+      </div>
+      <p><b>OMERS</b> contributions use the 2026 Primary Plan rates: 9.0% of pay up to $74,600 and 14.6% above it for a normal retirement age of 65, or 9.2% and 15.8% for age 60. Your employer pays the same amount. The pension is 2% of your best five years of pay for each year of service. At 65 it drops by 0.675% of pay (up to about $69,200) for each year of service, because the bridge benefit ends. OMERS lists rate changes from January 2027, so check <a href="https://www.omers.com/contribution-rates-review" target="_blank" rel="noopener">omers.com</a>. More in the <a href="https://assets.ctfassets.net/na4vk285lvnk/5cE5YZ75Oo0bbL1EPjpK2A/36739a2416921ec0e20f495a0a90553d/2024_OMERS_Member_Handbook_-_English.pdf" target="_blank" rel="noopener">OMERS member handbook</a>.</p>
+      <p><b>HOOPP</b> contributions are 6.9% of pay up to $74,600 and 9.2% above it, and the employer adds $1.26 for every $1 paid. HOOPP says rates stay unchanged through 2027. The pension is 1.5% of pay up to about $69,200 plus 2% of pay above that, for each year of service. Retiring before 65 also earns a bridge benefit of 0.5% of pay up to that amount for each year of service, until 65. Details are on the <a href="https://hoopp.com/members/hoopp-pension-features/pension-calculation" target="_blank" rel="noopener">HOOPP pension page</a> and in the <a href="https://hoopp.com/docs/default-source/members-library/general/hoopp-handbook-en.pdf" target="_blank" rel="noopener">HOOPP handbook</a>. HOOPP has raised the rate on some past service years, so an official estimate may be higher.</p>
+      <p><b>Two people.</b> When you add a partner, you both retire at the same time, so your partner's age moves with yours. Each pension is worked out on its own pay and service, and the two are added together against one household lifestyle. If one pension cannot start yet (it starts at 55, or 50 for OMERS with age 60), your portfolio covers that income until it does.</p>
+      <p><b>All plans</b> assume you stay with a plan employer until you retire, that pay keeps up with inflation, and that pensions keep up with inflation too. Neither plan guarantees that: HOOPP's inflation increases are not guaranteed for service after 2005, and OMERS pension earned from 2023 onward is not guaranteed to be fully indexed.</p>
+      <p><b>Retiring early</b> uses a 5% cut for each year before the normal retirement age: 65 or 60 for OMERS, 60 for HOOPP, where 30 years of service also avoids the cut. HOOPP's own examples show cuts of about 3% to 6% a year, so use its Pension Estimator for the exact amount. OMERS also applies other rules to some members, such as the 90 Factor.</p>
+      <p class="fine">Estimates in Canadian dollars. Returns are not guaranteed, and the figures ignore taxes, fees, CPP, OAS and changes in your spending. This is a planning aid, not financial advice.</p>
+    </div>
+  </details>
+</main>
+
+<script>
+(function () {
+  var A = { ret: 0.08, infl: 0.03, wr: 0.03 };
+  var YMPE = 74600;
+  var AYMPE = 69180;
+  var RATES = { omers65: [0.09, 0.146], omers60: [0.092, 0.158], hoopp: [0.069, 0.092] };
+  var $ = function (id) { return document.getElementById(id); };
+  var el = {
+    age: $('age'), life: $('life'), pv: $('pv'), pmt: $('pmt'), ret: $('ret'),
+    meSal: $('me-sal'), meSvc: $('me-svc'), ptAge: $('pt-age'), ptSal: $('pt-sal'), ptSvc: $('pt-svc')
+  };
+
+  function project(pv, pmt, months) {
+    var i = A.ret / 12;
+    if (i === 0) return pv + pmt * months;
+    var g = Math.pow(1 + i, months);
+    return pv * g + pmt * ((g - 1) / i);
+  }
+  function usd(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+  function compact(n) {
+    var a = Math.abs(n);
+    if (a >= 1e6) return '$' + (a / 1e6).toFixed(a >= 1e7 ? 0 : 1) + 'M';
+    if (a >= 1e3) return '$' + Math.round(a / 1e3) + 'K';
+    return '$' + Math.round(a);
+  }
+  function yrs(n) { return n + (n === 1 ? ' year' : ' years'); }
+  function pct(x) { return (x * 100).toFixed(1).replace(/\.0$/, '') + '%'; }
+  function planName(p) { return p === 'hoopp' ? 'HOOPP' : 'OMERS'; }
+
+  function rateFor(plan, nra) {
+    return plan === 'hoopp' ? RATES.hoopp : RATES['omers' + nra];
+  }
+  function contribution(plan, sal, nra) {
+    var r = rateFor(plan, nra);
+    return r[0] * Math.min(sal, YMPE) + r[1] * Math.max(sal - YMPE, 0);
+  }
+
+  function pensionFor(person, retireAge) {
+    var plan = person.plan;
+    var service = person.svc + Math.max(retireAge - person.age, 0);
+    var below = Math.min(person.sal, AYMPE);
+    var above = Math.max(person.sal - AYMPE, 0);
+    var earliest, begin, cut, life, withBridge;
+    if (plan === 'hoopp') {
+      earliest = 55;
+      begin = Math.max(retireAge, earliest);
+      cut = (begin < 60 && service < 30) ? Math.min(1, 0.05 * (60 - begin)) : 0;
+      life = service * (0.015 * below + 0.02 * above) * (1 - cut);
+      withBridge = life + service * 0.005 * below * (1 - cut);
+    } else {
+      earliest = person.nra === 65 ? 55 : 50;
+      begin = Math.max(retireAge, earliest);
+      cut = begin < person.nra ? Math.min(1, 0.05 * (person.nra - begin)) : 0;
+      var gross = 0.02 * service * person.sal;
+      withBridge = gross * (1 - cut);
+      life = (gross - 0.00675 * service * below) * (1 - cut);
+    }
+    return {
+      service: service, cut: cut, begin: begin, retireAge: retireAge,
+      gapYears: Math.max(earliest - retireAge, 0),
+      withBridge: withBridge, life: life
+    };
+  }
+
+  function scenario(s, retireAge) {
+    var y = retireAge - s.age;
+    var inflation = Math.pow(1 + A.infl, y);
+    var annual = s.life * 12;
+    var base = annual * inflation / A.wr;
+    var out = { proj: project(s.pv, s.pmt, y * 12), years: y, base: base, need: base, pens: [], total: 0, maxGap: 0 };
+    var active = [];
+    s.people.forEach(function (p) {
+      if (p.plan === 'none') { out.pens.push(null); return; }
+      var pen = pensionFor(p, p.age + y);
+      out.pens.push(pen);
+      active.push(pen);
+      out.total += pen.life;
+    });
+    if (active.length) {
+      var maxGap = 0;
+      active.forEach(function (p) { maxGap = Math.max(maxGap, p.gapYears); });
+      var need = 0;
+      for (var t = 0; t < maxGap; t++) {
+        var income = 0;
+        active.forEach(function (p) { if (t >= p.gapYears) income += p.life; });
+        need += Math.max(annual - income, 0) * inflation;
+      }
+      need += Math.max(annual - out.total, 0) * inflation / A.wr;
+      out.need = need;
+      out.maxGap = maxGap;
+    }
+    return out;
+  }
+
+  function readPerson(x, age) {
+    var plan = $(x + '-plan-omers').checked ? 'omers' : ($(x + '-plan-hoopp').checked ? 'hoopp' : 'none');
+    return {
+      x: x, age: age, plan: plan,
+      sal: +$(x + '-sal').value, svc: +$(x + '-svc').value,
+      nra: $(x + '-nra60').checked ? 60 : 65
+    };
+  }
+  function read() {
+    var s = {
+      age: +el.age.value, life: +el.life.value, pv: +el.pv.value,
+      pmt: +el.pmt.value, ret: +el.ret.value,
+      family: $('who-family').checked
+    };
+    s.people = [readPerson('me', s.age)];
+    if (s.family) s.people.push(readPerson('pt', +el.ptAge.value));
+    return s;
+  }
+
+  function renderPerson(p, pen, s) {
+    var x = p.x;
+    var you = x === 'me';
+    $(x + '-body').hidden = p.plan === 'none';
+    $(x + '-nra-row').hidden = p.plan !== 'omers';
+    $(x + '-v-sal').textContent = usd(p.sal);
+    $(x + '-v-svc').textContent = p.svc;
+    if (!pen) return;
+    var name = planName(p.plan);
+    var who = you ? 'you' : 'your partner';
+    var rt = rateFor(p.plan, p.nra);
+    $(x + '-f-contrib').textContent = usd(contribution(p.plan, p.sal, p.nra) / 12) + ' a month';
+    $(x + '-f-contrib-note').textContent = pct(rt[0]) + ' of pay up to ' + usd(YMPE) + ' and ' + pct(rt[1]) + ' above. ' +
+      (p.plan === 'hoopp' ? 'The employer adds $1.26 for every $1 paid.' : 'The employer matches it.');
+
+    var lifeM = pen.life / 12;
+    $(x + '-f-life-dt').textContent = name + ' pays ' + who + ' from ' + (pen.retireAge > 65 ? pen.begin : 65);
+    $(x + '-f-life').textContent = usd(lifeM) + ' a month';
+    var note = "In today's dollars after " + yrs(pen.service) + ' of service.';
+    if (!s.family) note += ' That covers ' + Math.min(100, Math.round(lifeM / s.life * 100)) + '% of your lifestyle.';
+    if (pen.cut > 0) note += ' Includes a ' + Math.round(pen.cut * 100) + '% early-retirement cut.';
+    $(x + '-f-life-note').textContent = note;
+
+    var showBridge = pen.begin < 65 && pen.withBridge > pen.life + 1;
+    $(x + '-f-bridge-row').hidden = !showBridge;
+    if (showBridge) {
+      $(x + '-f-bridge-dt').textContent = 'From ' + pen.begin + ' until 65, with the bridge';
+      $(x + '-f-bridge').textContent = usd(pen.withBridge / 12) + ' a month';
+    }
+
+    var warn = $(x + '-warn');
+    if (pen.gapYears > 0) {
+      warn.hidden = false;
+      warn.textContent = name + ' cannot pay ' + who + ' before ' + pen.begin + ". Your portfolio covers that income for the first " + yrs(pen.gapYears) + ', and that is added to what you need.';
+    } else {
+      warn.hidden = true;
+    }
+  }
+
+  function render() {
+    var s = read();
+    el.ret.min = Math.max(45, s.age + 1);
+    if (s.ret < +el.ret.min) { s.ret = +el.ret.min; el.ret.value = s.ret; }
+
+    $('v-age').textContent = s.age;
+    $('v-life').textContent = usd(s.life);
+    $('v-pv').textContent = usd(s.pv);
+    $('v-pmt').textContent = usd(s.pmt);
+    $('v-ret').textContent = s.ret;
+    $('pt-v-age').textContent = el.ptAge.value;
+
+    $('life-sub').textContent = s.family ? "(both of you, today's dollars)" : "(today's dollars)";
+    $('pv-sub').textContent = s.family ? '(TFSA, RRSP, stocks — both of you)' : '(TFSA, RRSP, stocks — total)';
+    $('pmt-sub').textContent = s.family ? '(together, in the market, not savings)' : '(in the market, not savings)';
+    $('pt-block').hidden = !s.family;
+    $('me-name').hidden = !s.family;
+    var partnerAt = function (a) { return s.family ? s.people[1].age + (a - s.age) : null; };
+    $('ret-sub').textContent = s.family ? 'Your partner will be ' + partnerAt(s.ret) + '. You retire together.' : '';
+    $('pt-age-sub').textContent = '';
+
+    var r = scenario(s, s.ret);
+    var gap = r.proj - r.need;
+    var ahead = gap >= 0;
+    var anyPlan = r.pens.some(Boolean);
+
+    $('r-proj').textContent = compact(r.proj);
+    $('r-need').textContent = compact(r.need);
+    var names = [];
+    s.people.forEach(function (p) { if (p.plan !== 'none') names.push(planName(p.plan)); });
+    $('r-need-sub').textContent = names.length ? 'with ' + names.join(' + ') : '';
+    $('r-gap').innerHTML = compact(gap) + '<small>' + (ahead ? 'ahead' : 'short') + '</small>';
+    $('gapbox').classList.toggle('behind', !ahead);
+
+    s.people.forEach(function (p, i) { renderPerson(p, r.pens[i], s); });
+
+    $('hh-facts').hidden = !anyPlan;
+    if (anyPlan) {
+      $('hh-total-row').hidden = !s.family;
+      if (s.family) {
+        var tot = r.total / 12;
+        $('hh-total').textContent = usd(tot) + ' a month';
+        $('hh-total-note').textContent = "In today's dollars, from 65. That covers " + Math.min(100, Math.round(tot / s.life * 100)) + '% of your lifestyle.';
+      }
+      $('f-without').textContent = compact(r.base);
+      var saved = r.base - r.need;
+      $('f-saves').textContent = saved > 0
+        ? (s.family ? 'Your pensions cut' : names[0] + ' cuts') + ' the portfolio you need by ' + compact(saved) + '.'
+        : 'With these settings the pension does not reduce what you need.';
+
+      $('hh-other-row').hidden = s.family;
+      if (!s.family) {
+        var me = s.people[0];
+        var otherPlan = me.plan === 'omers' ? 'hoopp' : 'omers';
+        var alt = { age: s.age, life: s.life, pv: s.pv, pmt: s.pmt, ret: s.ret, family: false,
+                    people: [{ x: 'me', age: me.age, plan: otherPlan, sal: me.sal, svc: me.svc, nra: me.nra }] };
+        var ro = scenario(alt, s.ret);
+        $('f-other-dt').textContent = "Portfolio you'd need with " + planName(otherPlan);
+        $('f-other').textContent = compact(ro.need);
+        $('f-other-note').textContent = 'Same pay and service. ' + planName(otherPlan) + ' would pay ' + usd(ro.pens[0].life / 12) + ' a month from 65.';
+      }
+    }
+
+    var lead = $('lead'), more = $('more'), icon = $('icon');
+    var withPartner = function (a) { return s.family ? ', with your partner at ' + partnerAt(a) : ''; };
+    if (ahead) {
+      icon.innerHTML = '<path d="M3.5 9.5l3.5 3.5 7.5-8"/>';
+      icon.style.color = 'var(--good)';
+      var early = null;
+      for (var a = s.age + 1; a < s.ret; a++) {
+        var c = scenario(s, a);
+        if (c.proj >= c.need) { early = a; break; }
+      }
+      lead.innerHTML = "You're on track. Now the real question — <b>could you be financially independent earlier?</b>";
+      if (early !== null) {
+        more.innerHTML = 'At this pace you could reach independence at <b>age ' + early + '</b>' + withPartner(early) + ', ' + yrs(s.ret - early) + ' sooner than planned.';
+      } else {
+        more.innerHTML = 'At this pace, <b>age ' + s.ret + '</b> is the earliest you reach independence. Investing more each month would pull it forward.';
+      }
+    } else {
+      icon.innerHTML = '<path d="M9 5v5M9 13.2v.1"/>';
+      icon.style.color = 'var(--bad)';
+      var perDollar = project(0, 1, r.years * 12);
+      var extra = perDollar > 0 ? Math.ceil((r.need - r.proj) / perDollar / 10) * 10 : null;
+      var later = null;
+      for (var b = s.ret + 1; b <= 80; b++) {
+        var d = scenario(s, b);
+        if (d.proj >= d.need) { later = b; break; }
+      }
+      lead.innerHTML = "You're <b>" + compact(-gap) + ' short</b> of what you need at ' + s.ret + '. Two ways to close it:';
+      var parts = [];
+      if (extra !== null) parts.push('invest about <b>' + usd(extra) + ' more a month</b> (' + usd(s.pmt + extra) + ' in total)');
+      if (later !== null) parts.push('retire at <b>' + later + '</b> instead' + withPartner(later));
+      more.innerHTML = parts.length
+        ? parts.join(', or ').replace(/^./, function (m) { return m.toUpperCase(); }) + '.'
+        : 'Try investing more each month or lowering your retirement lifestyle.';
+    }
+
+    var growth = (1 + A.infl).toFixed(2).replace(/0+$/, '').replace(/\.$/, '') + '^' + r.years;
+    var wr = (A.wr * 100).toFixed(1).replace(/\.0$/, '') + '%';
+    var text;
+    if (anyPlan) {
+      var label = s.family ? 'pensions' : names[0];
+      text = '(' + usd(s.life) + ' − ' + usd(r.total / 12) + ' ' + label + ') × 12 × ' + growth + ' ÷ ' + wr;
+      if (r.maxGap > 0) text += ' + full spending until each pension starts';
+      text += ' = ' + compact(r.need);
+      if (r.total / 12 >= s.life && r.maxGap === 0) text = (s.family ? 'Your pensions pay' : names[0] + ' pays') + ' at least ' + usd(s.life) + ' a month, so no portfolio is needed for your lifestyle.';
+    } else {
+      text = usd(s.life) + ' × 12 × ' + growth + ' ÷ ' + wr + ' = ' + compact(r.need);
+    }
+    $('worked').textContent = text;
+  }
+
+  $('card').addEventListener('input', render);
+  $('card').addEventListener('change', render);
+
+  function bindAssumption(id, key, lo, hi) {
+    $(id).addEventListener('input', function (e) {
+      var v = parseFloat(e.target.value);
+      if (isNaN(v)) return;
+      A[key] = Math.min(hi, Math.max(lo, v)) / 100;
+    });
+  }
+  bindAssumption('a-ret', 'ret', 0, 15);
+  bindAssumption('a-infl', 'infl', 0, 10);
+  bindAssumption('a-wr', 'wr', 1, 10);
+
+  render();
+})();
+</script>
+
+</body></html>
